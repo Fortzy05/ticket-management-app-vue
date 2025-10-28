@@ -127,7 +127,7 @@ const getStatusColor = (status: string) => {
   }
 };
 
-export const getInitials = (email: string): string => {
+ const getInitials = (email: string): string => {
   if (!email) return ""; // handle empty email
 
   const namePart = email.split("@")[0] || "";

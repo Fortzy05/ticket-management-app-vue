@@ -44,7 +44,7 @@ const resolvedTickets = computed(
   () => tickets.value.filter((t) => t.status === "closed").length
 );
 
-export const getInitials = (email: string): string => {
+ const getInitials = (email: string): string => {
   if (!email) return ""; // handle empty email
 
   const namePart = email.split("@")[0] || "";
