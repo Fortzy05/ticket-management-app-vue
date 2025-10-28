@@ -1,5 +1,5 @@
 <script setup lang="ts" >
-import { ref, computed, onMounted } from "vue";
+import { ref, computed } from "vue";
 import { useRouter, useRoute } from "vue-router";
 import { useTickets } from "../composables/useTickets"; // same composable logic as React context
 

@@ -44,15 +44,24 @@ const resolvedTickets = computed(
   () => tickets.value.filter((t) => t.status === "closed").length
 );
 
-const getInitials = (email: string) => {
-    const namePart = email.split("@")[0];
-    return (
-      namePart
-        .split(".")
-        .map((n) => n[0]?.toUpperCase())
-        .join("") || email[0]?.toUpperCase()
-    );
-  };
+export const getInitials = (email: string): string => {
+  if (!email) return ""; // handle empty email
+
+  const namePart = email.split("@")[0] || "";
+
+  // split by dots, remove empty strings
+  const segments = namePart.split(".").filter((s) => s.length > 0);
+
+  // safely map to first character of each segment
+  const initials = segments
+    .map((segment) => segment.charAt(0).toUpperCase()) // charAt(0) always returns "" for empty string
+    .join("");
+
+  // fallback to first letter of email
+  return initials || (email.charAt(0).toUpperCase() || "");
+};
+
+
 
 </script>
 

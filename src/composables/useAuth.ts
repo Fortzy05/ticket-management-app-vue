@@ -1,4 +1,4 @@
-import { ref, computed, inject, provide, type Ref } from "vue";
+import { ref, inject, provide, type Ref } from "vue";
 
 interface User {
   email: string;
