@@ -11,13 +11,15 @@ import ManageTicket from "../views/ManageTicket.vue";
 
 // Example of a "protected route" guard
 function requireAuth(_to: any, _from: any, next: any) {
-  const isAuthenticated = Boolean(localStorage.getItem("authToken")); // replace with your auth logic
+  const session = localStorage.getItem("ticketapp_session");
+  const isAuthenticated = Boolean(session); // true if session exists
   if (!isAuthenticated) {
     next("/login");
   } else {
     next();
   }
 }
+
 
 const routes: Array<RouteRecordRaw> = [
   // Public routes

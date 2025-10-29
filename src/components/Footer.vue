@@ -1,24 +1,24 @@
 <template>
   <footer class="bg-white border-t border-gray-200">
     <div class="max-w-7xl mx-auto px-6 py-12">
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-center sm:text-left">
         <!-- Brand Section -->
-        <div>
-          <div class="flex items-center gap-3">
+        <div class="flex flex-col items-center sm:items-start gap-2">
+          <div class="flex items-center gap-2 sm:gap-3">
             <span class="material-symbols-outlined text-indigo-500 text-3xl">
               confirmation_number
             </span>
-            <h2 class="text-gray-900 text-xl font-bold">TicketFlow</h2>
+            <h2 class="text-gray-900 text-lg sm:text-xl font-bold">TicketFlow</h2>
           </div>
-          <p class="mt-4 text-sm text-gray-600">
+          <p class="mt-3 text-sm text-gray-600">
             Streamline your support, one ticket at a time.
           </p>
         </div>
 
         <!-- Company Links -->
-        <div>
-          <h3 class="text-gray-900 font-bold mb-4">Company</h3>
-          <ul class="space-y-3">
+        <div class="flex flex-col items-center sm:items-start">
+          <h3 class="text-gray-900 font-bold mb-3">Company</h3>
+          <ul class="space-y-2">
             <li>
               <a href="#" class="text-gray-600 hover:text-indigo-500 transition-colors text-sm">
                 About Us
@@ -38,9 +38,9 @@
         </div>
 
         <!-- Legal Links -->
-        <div>
-          <h3 class="text-gray-900 font-bold mb-4">Legal</h3>
-          <ul class="space-y-3">
+        <div class="flex flex-col items-center sm:items-start">
+          <h3 class="text-gray-900 font-bold mb-3">Legal</h3>
+          <ul class="space-y-2">
             <li>
               <a href="#" class="text-gray-600 hover:text-indigo-500 transition-colors text-sm">
                 Privacy Policy
@@ -55,17 +55,17 @@
         </div>
 
         <!-- Contact Section -->
-        <div>
-          <h3 class="text-gray-900 font-bold mb-4">Contact</h3>
-          <ul class="space-y-3">
-            <li class="flex items-center gap-2">
-              <span class="material-symbols-outlined text-gray-500 text-xl">mail</span>
+        <div class="flex flex-col items-center sm:items-start">
+          <h3 class="text-gray-900 font-bold mb-3">Contact</h3>
+          <ul class="space-y-2">
+            <li class="flex items-center gap-2 justify-center sm:justify-start">
+              <span class="material-symbols-outlined text-gray-500 text-lg">mail</span>
               <a href="mailto:support@ticketflow.com" class="text-gray-600 hover:text-indigo-500 transition-colors text-sm">
                 support@ticketflow.com
               </a>
             </li>
-            <li class="flex items-center gap-2">
-              <span class="material-symbols-outlined text-gray-500 text-xl">phone</span>
+            <li class="flex items-center gap-2 justify-center sm:justify-start">
+              <span class="material-symbols-outlined text-gray-500 text-lg">phone</span>
               <a href="tel:+1234567890" class="text-gray-600 hover:text-indigo-500 transition-colors text-sm">
                 +1 (234) 567-890
               </a>
@@ -75,8 +75,8 @@
       </div>
 
       <!-- Bottom Footer -->
-      <div class="mt-12 pt-8 border-t border-gray-200 flex flex-col sm:flex-row items-center justify-between">
-        <p class="text-sm text-gray-500 text-center sm:text-left mb-4 sm:mb-0">
+      <div class="mt-12 pt-8 border-t border-gray-200 flex flex-col sm:flex-row items-center justify-center sm:justify-between gap-4">
+        <p class="text-sm text-gray-500 text-center sm:text-left">
           © {{ currentYear }} TicketFlow. All rights reserved.
         </p>
 

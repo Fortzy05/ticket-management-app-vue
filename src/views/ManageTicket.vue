@@ -1,7 +1,7 @@
 <template>
   <div class="min-h-screen bg-gray-50 text-gray-900 font-[Poppins]">
     <!-- Header -->
-    <header class="bg-white shadow-sm p-4 flex justify-between">
+    <header class="bg-white shadow-sm p-4 flex justify-between items-center">
       <RouterLink to="/" class="flex items-center gap-3">
         <span class="material-symbols-outlined text-[#7F56D9] text-3xl">
           confirmation_number
@@ -37,7 +37,65 @@
           Logout
         </button>
       </div>
+
+      <!-- MOBILE Hamburger Menu -->
+      <button
+        @click="isMenuOpen = !isMenuOpen"
+        class="md:hidden text-3xl text-[#7F56D9]"
+      >
+        <span class="material-symbols-outlined">
+          {{ isMenuOpen ? "close" : "menu" }}
+        </span>
+      </button>
     </header>
+
+    <!-- MOBILE DROPDOWN MENU -->
+    <transition name="fade">
+      <div
+        v-if="isMenuOpen"
+        class="md:hidden bg-white shadow-md p-5 flex flex-col gap-5"
+      >
+        <!-- User Section -->
+        <div class="flex items-center gap-3">
+          <div
+            class="w-10 h-10 rounded-full bg-[#7F56D9] flex items-center justify-center font-bold text-white"
+          >
+            {{ user ? getInitials(user.email) : "?" }}
+          </div>
+          <div>
+            <p class="font-medium text-gray-800">{{ user?.email }}</p>
+          </div>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="flex flex-col gap-3">
+          <RouterLink
+            to="/dashboard"
+            class="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#7F56D9]/10 text-[#7F56D9] font-medium"
+            @click="closeMenu"
+          >
+            <span class="material-symbols-outlined">confirmation_number</span>
+            Dashboard
+          </RouterLink>
+
+          <RouterLink
+            to="/create-ticket"
+            class="flex items-center gap-2 px-4 py-2 rounded-xl bg-gray-100 hover:bg-gray-200 font-medium"
+            @click="closeMenu"
+          >
+            <span class="material-symbols-outlined">add</span>
+            Create Ticket
+          </RouterLink>
+        </nav>
+
+        <button
+          @click="logout"
+          class="text-left text-red-600 font-semibold mt-2"
+        >
+          Logout
+        </button>
+      </div>
+    </transition>
 
     <!-- Main -->
     <main class="relative p-8 max-w-6xl mx-auto">
@@ -105,14 +163,19 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from "vue";
 import { useRouter, RouterLink } from "vue-router";
 import Footer from "../components/Footer.vue";
 import { useTickets } from "../composables/useTickets";
 import { useAuth } from "../composables/useAuth";
 
 const router = useRouter();
+const isMenuOpen = ref(false);
+
 const { tickets, deleteTicket } = useTickets();
 const { user, logout } = useAuth();
+
+const closeMenu = () => (isMenuOpen.value = false);
 
 const getStatusColor = (status: string) => {
   switch (status) {
@@ -127,21 +190,13 @@ const getStatusColor = (status: string) => {
   }
 };
 
- const getInitials = (email: string): string => {
-  if (!email) return ""; // handle empty email
-
+const getInitials = (email: string): string => {
+  if (!email) return "";
   const namePart = email.split("@")[0] || "";
-
-  // split by dots, remove empty strings
   const segments = namePart.split(".").filter((s) => s.length > 0);
-
-  // safely map to first character of each segment
   const initials = segments
-    .map((segment) => segment.charAt(0).toUpperCase()) // charAt(0) always returns "" for empty string
+    .map((segment) => segment.charAt(0).toUpperCase())
     .join("");
-
-  // fallback to first letter of email
   return initials || (email.charAt(0).toUpperCase() || "");
 };
-
 </script>
